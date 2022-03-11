@@ -1,4 +1,6 @@
 from flask import Blueprint
-author = Blueprint('auth', __name__)
+
+
+auth = Blueprint('auth',__name__)
 
 from . import views
