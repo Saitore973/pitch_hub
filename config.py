@@ -7,10 +7,14 @@ class config:
 class ProdConfig(config):
     pass
 
+class TestConfig(config):
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/pitch_test'
 class DevConfig(config):
-    pass
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/pitch'
+    DEBUG =True
 
 config_options={
     'development': DevConfig,
-    'production': ProdConfig
+    'production': ProdConfig,
+    'test':TestConfig
 }
