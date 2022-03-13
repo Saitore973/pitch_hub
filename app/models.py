@@ -57,7 +57,40 @@ class Pitch(db.Model):
     name = db.Column(db.String(20))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    likes = db.relationship('Likes', backref = 'user', lazy = 'dynamic')
+    dislikes = db.relationship('Dislikes', backref = 'dislike', lazy = 'dynamic')
+
     
     
     def __repr__(self):
         return f'User {self.pitch}'
+
+class Likes(db.Model):
+    id = db.Column(db.Integer,primary_key = True)
+    upvote = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_likes(cls,id):
+        upvotes = Dislikes.query.filter_by(pitch_id =id).all()
+        return upvotes
+
+class Dislikes(db.Model):
+    id = db.Column(db.Integer,primary_key = True)
+    downvote = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_dislikes(cls,id):
+        downvotes = Dislikes.query.filter_by(pitch_id =id).all()
+        return downvotes
