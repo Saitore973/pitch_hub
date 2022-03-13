@@ -5,6 +5,6 @@ from . import main
 def index():
     return render_template('index.html')
 
-@main.route('/home')
+@main.route("/home")
 def home():
     return render_template('home.html')

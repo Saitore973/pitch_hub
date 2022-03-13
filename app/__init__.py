@@ -1,5 +1,4 @@
 from ensurepip import bootstrap
-import imp
 from config import config_options
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
