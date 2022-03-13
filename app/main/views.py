@@ -4,6 +4,7 @@ from .forms import PitchForm
 from flask_login import login_required, current_user
 from ..models import  Pitch
 from .. import db
+import markdown2
 @main.route('/')
 def index():
     return render_template('index.html')
@@ -14,7 +15,7 @@ def home():
 
 @main.route('/pitches', methods = ['GET','POST'])
 @login_required
-def pitches(id):
+def pitches():
     form = PitchForm()
     
     if form.validate_on_submit():
@@ -24,3 +25,4 @@ def pitches(id):
       return redirect(url_for('.pitches'))
     posts = Pitch.query.all()
     return render_template('pitches.html', posts =posts , pitches = pitches, pitch_form = form)
+

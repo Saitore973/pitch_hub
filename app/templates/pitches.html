@@ -4,13 +4,15 @@
     <div class="container">
 
         <div class="col-md-8">
-
+            {%for post in posts %}
+     {{post.pitch}}
+    {%endfor%}
             
         </div>
 
         <div class="col-md-4">
 
-            {{ wtf.quick_form(review_form) }}
+            {{ wtf.quick_form(pitch_form) }}
              {{simplemde.load}}
         </div>
 

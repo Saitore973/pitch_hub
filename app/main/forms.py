@@ -8,3 +8,11 @@ class PitchForm(FlaskForm):
     pitch = TextAreaField('Enter your Pitch')
     name = StringField('Enter your name', validators=[DataRequired()])
     submit = SubmitField('Pitch', validators=[DataRequired()])
+
+class ReviewForm(FlaskForm):
+
+ title = StringField('Review title',validators=[DataRequired()])
+
+ review = TextAreaField('Movie review')
+
+ submit = SubmitField('Submit')
