@@ -14,6 +14,7 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(255),unique = True,index = True)
     role_id= db.Column(db.Integer,db.ForeignKey('roles.id'))
     pass_secure = db.Column(db.String(255))
+    pitches = db.relationship('Pitch',backref = 'user',lazy = "dynamic")
 
     @property
     def password(self):
@@ -40,6 +41,15 @@ class Role(db.Model):
 class Pitch(db.Model):
 
     __tablename__ = 'pitches'
+
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_pitches(cls,id):
+        pitches = Pitch.query.filter_by(user_id=id).all()
+        return pitches
     id = db.Column(db.Integer, primary_key = True)
     pitch = db.Column(db.String(400))
     name = db.Column(db.String(20))
