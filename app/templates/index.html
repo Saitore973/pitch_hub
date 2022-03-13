@@ -1,5 +1,10 @@
 {%extends 'base.html'%}
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
 {%block content%}
-<h1>Never never give up</h1>
-<a href="/pitches/">to pitches</a>
+<h1>Say you had only 60 seconds <br/>to impress someone by  <br/>peaching something meanigful, <br/> what would that be?</h1>
+<a href="/pitches"> <button>Lets get you started</button> </a>
+img
 {%endblock%}
