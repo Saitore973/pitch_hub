@@ -55,8 +55,7 @@ class Pitch(db.Model):
     name = db.Column(db.String(20))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    likes = db.relationship('Likes', backref = 'likes', lazy = 'dynamic')
-    dislikes = db.relationship('Dislikes', backref = 'dislikes', lazy = 'dynamic')
+    
     
     def __repr__(self):
         return f'User {self.pitch}'
