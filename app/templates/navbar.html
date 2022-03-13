@@ -24,6 +24,7 @@
                         {%endif%}
                        
                     </li>
+                    <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
                     <li><a href="{{url_for('auth.logout')}}">Logout</a></li>
                 {%else%}
                     <li><a href="{{url_for('auth.login')}}" style="color: #fff;">Sign In</a></li>
